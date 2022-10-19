@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>learn vue</title>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+
+    <style>
+      body {
+        background: #eee;
+        max-width: 960px;
+        margin: 20 auto;
+      }
+      p,
+      h3 pul {
+        margin: 0;
+        padding: 0;
+      }
+      li {
+        list-style: none;
+        background: #fff;
+        margin: 20px auto;
+        padding: 10px 20px;
+        border-radius: 10px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+      }
+      li.fav {
+        background: #ff9ed2;
+        color: white;
+      }
+      .box {
+        padding: 100px 0;
+        text-align: center;
+        background-color: #ddd;
+        margin: 20px;
+        display: inline-block;
+        width: 400px;
+      }
+      .imgClass {
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        margin: 20px;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>hello there</h1>
+    <div id="app">
+      <a :href="url">Google</a>
+
+      <div v-if="showBooks ">
+        <div v-if="changeShowBooks">
+          <ul>
+            <li
+              v-for="item in filteredBooks"
+              :class="{fav : item.isFav}"
+              @click="handelChangeFav(item)"
+            >
+              <img :src="item.img" alt="item.title" class="imgClass" />
+              <h3>{{item.title}}</h3>
+              <p>{{item.author}}</p>
+            </li>
+          </ul>
+        </div>
+        <p>{{books[0].title}} - {{books[0].author}}</p>
+      </div>
+      <button @click="changeShowBooks">
+        <span v-if="showBooks">hid Books</span>
+        <span v-else>show Books</span>
+      </button>
+      <div v-show="showBooks">Currently showing books</div>
+
+      <div class="box" @mouseover="handelEvent($event, 5)">
+        mouseOver (enter)
+      </div>
+      <div class="box" @mouseleave="handelEvent">mouse Leave</div>
+      <div class="box" @dblclick="handelEvent">double click</div>
+      <div class="box" @mousemove="handelMouseMove">
+        position - {{x}} - {{y}}
+      </div>
+    </div>
+
+    <script src="app.js"></script>
+  </body>
+</html>
